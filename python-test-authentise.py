@@ -1,4 +1,5 @@
 # Task 4: Take the input string as a file name
+import sys
 
 def ReverseString(inputStr):
     """Takes an input string and completely reverses it from first character to last"""
@@ -71,6 +72,7 @@ def ParseString(userInput):
     return userInputStr, flag
 
 def ReadFile(path):
+    path += ".txt"
     filepath = fr"{path}"
     
     try:
@@ -83,7 +85,6 @@ def ReadFile(path):
         print("The requested file could not be found. Please specify the full path and name including extension")
     
     for line in lines:
-        #print("Line found with length ", len(line))
         if len(line) > 1: # Empty lines prior to message will have length of 1, skip these
             outputStr = line
             break
@@ -91,25 +92,29 @@ def ReadFile(path):
     return outputStr
 
 def main():
-    outputFromFile = ""
-    flag = ""
+    
+    while True:
+        outputFromFile = ""
+        flag = ""
+        print("Please enter the filepath and name of a .txt file including its extension, or press 9 to exit: ")
+    
+        inputPath = input()
+        
+        if inputPath == "9":
+            sys.exit()
+        
+        outputFromFile = ReadFile(inputPath)
+        
+        inputStr, flag = ParseString(outputFromFile)
+        
+        if flag == "r":
+            resultToPrint = ReverseString(inputStr)
+        elif flag == "w":
+            resultToPrint = ReverseWords(inputStr)
+        else:
+            raise Exception("Only flags -r and -w are allowed")
 
-    print("Please enter the filepath and name of a .txt file including its extension: ")
-    
-    inputPath = input()
-    
-    outputFromFile = ReadFile(inputPath)
-    
-    inputStr, flag = ParseString(outputFromFile)
-    
-    if flag == "r":
-        resultToPrint = ReverseString(inputStr)
-    elif flag == "w":
-        resultToPrint = ReverseWords(inputStr)
-    else:
-        raise Exception("Only flags -r and -w are allowed")
-
-    print(resultToPrint)
+        print(resultToPrint)
 
 if __name__ == "__main__":
     main()
