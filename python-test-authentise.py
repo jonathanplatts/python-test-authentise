@@ -96,7 +96,7 @@ def main():
     while True:
         outputFromFile = ""
         flag = ""
-        print("Please enter the filepath and name of a .txt file including its extension, or press 9 to exit: ")
+        print("Please enter the filepath and name of a text file, or press 9 to exit: ")
     
         inputPath = input()
         
