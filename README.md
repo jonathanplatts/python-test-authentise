@@ -10,8 +10,9 @@ INSTRUCTIONS:
 * Download the attachment TestFile.txt from this ReadMe (or create your own text file) - save it anywhere
 * Go to command prompt and navigate to the directory where python-test-authentise.py is (cd <DIR_NAME>, or Mac equivalent)
 * Run the program using: python python-test-authentise.py (on Windows, Mac equivalent $ python3 python-test-authentise.py)
-* Ensure you enter the full filepath that you want the program to read, including the .txt extension, and that it is a .txt file
-* Edit the text file to change the input (or create a new one)
+* Ensure you enter the full filepath that you want the program to read, and that it is a .txt file
+(You do not need to enter the extension)
+* Edit the text file to change the input to the program, or enter the filepath of another text file
 
 Alternatively, run this program in the terminal of an IDE
 
