@@ -1,4 +1,4 @@
-# Task 3: Program to reverse words in a string
+# Task 4: Take the input string as a file name
 
 def ReverseString(inputStr):
     """Takes an input string and completely reverses it from first character to last"""
@@ -37,9 +37,7 @@ def ReverseWords(inputStr):
             
     inputWordList += [inputStr[lastSpacePosition + 1:]]
     
-    #print("input: ", inputWordList)
     reversedWordList = inputWordList[::-1]
-    #print("reversed: ", reversedWordList)
     
     outputWordsStr = ""
 
@@ -49,14 +47,9 @@ def ReverseWords(inputStr):
 
     return outputWordsStr
 
-def main():
+def ParseString(userInput):
     stringIdxs = []
     flagIdxs = []
-    flag = ""
-    
-    print("Please enter a string in quotes '' or "", with a flag - -r or -w: ")
-    userInput = input()
-    
     for count, char in enumerate(userInput):
         if char == "'" or char == '"':
             stringIdxs += [count]
@@ -75,10 +68,44 @@ def main():
     else:
         raise Exception("No flag specified")
 
+    return userInputStr, flag
+
+def ReadFile(path):
+    filepath = fr"{path}"
+    
+    try:
+        
+        with open(filepath) as f:
+            lines = f.readlines()
+        f.close()
+        pass
+    except:
+        print("The requested file could not be found. Please specify the full path and name including extension")
+    
+    for line in lines:
+        #print("Line found with length ", len(line))
+        if len(line) > 1: # Empty lines prior to message will have length of 1, skip these
+            outputStr = line
+            break
+        
+    return outputStr
+
+def main():
+    outputFromFile = ""
+    flag = ""
+
+    print("Please enter the filepath and name of a .txt file including its extension: ")
+    
+    inputPath = input()
+    
+    outputFromFile = ReadFile(inputPath)
+    
+    inputStr, flag = ParseString(outputFromFile)
+    
     if flag == "r":
-        resultToPrint = ReverseString(userInputStr)
+        resultToPrint = ReverseString(inputStr)
     elif flag == "w":
-        resultToPrint = ReverseWords(userInputStr)
+        resultToPrint = ReverseWords(inputStr)
     else:
         raise Exception("Only flags -r and -w are allowed")
 
